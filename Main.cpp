@@ -188,11 +188,12 @@ int main() //This Is Where Things Get Done
 		}
 		
 		//This Part Means That The Ball Hit The Wall And Must Rebound
-		if (PongBall.getPosition().y == 0) //PongBall Hit The Top Of The Window
+		if (PongBall.getPosition().y <= 0) //PongBall Hit The Top Of The Window
 		{
 			Direction = true;
+			BallValue = rand() % 3;
 		}
-		if (PongBall.getPosition().y == 480) //PongBall Hit The Bottom Of The Window
+		if (PongBall.getPosition().y >= 480) //PongBall Hit The Bottom Of The Window
 		{
 			Direction = false;
 		}
@@ -201,19 +202,19 @@ int main() //This Is Where Things Get Done
 		//This Section Uses The Values Of PaddleContact In Order To Determine Which Direction The Ball Will Be Going
 		if (LeftPaddleContact == false && Direction == true) //Will Check If The Left Paddle Missed The PongBall
 		{
-			PongBall.setPosition(PongBall.getPosition().x - 1, PongBall.getPosition().y + 1); //Since It Missed The Ball Will Keep Going Left
+			PongBall.setPosition(PongBall.getPosition().x - 1, PongBall.getPosition().y + BallValue); //Since It Missed The Ball Will Keep Going Left
 		}
 		if (LeftPaddleContact == true && Direction == true) //Will Check If The Left Paddle Hit The PongBall
 		{
-			PongBall.setPosition(PongBall.getPosition().x + 1, PongBall.getPosition().y + 1); //Since It Hit The Ball It Will Change The Balls Direction To The Right
+			PongBall.setPosition(PongBall.getPosition().x + 1, PongBall.getPosition().y + BallValue); //Since It Hit The Ball It Will Change The Balls Direction To The Right
 		}
 		if (LeftPaddleContact == false && Direction == false) //Will Check If The Left Paddle Missed The PongBall
 		{
-			PongBall.setPosition(PongBall.getPosition().x - 1, PongBall.getPosition().y - 1); //Since It Missed The Ball Will Keep Going Left
+			PongBall.setPosition(PongBall.getPosition().x - 1, PongBall.getPosition().y - BallValue); //Since It Missed The Ball Will Keep Going Left
 		}
 		if (LeftPaddleContact == true && Direction == false) //Will Check If The Left Paddle Hit The PongBall
 		{
-			PongBall.setPosition(PongBall.getPosition().x + 1, PongBall.getPosition().y - 1); //Since It Hit The Ball It Will Change The Balls Direction To The Right
+			PongBall.setPosition(PongBall.getPosition().x + 1, PongBall.getPosition().y - BallValue); //Since It Hit The Ball It Will Change The Balls Direction To The Right
 		}
 		if (RightPaddleContact == true && LeftPaddleContact == true) //If The Right Paddle Returned The Ball It Is Then Up To The Left Paddle To Return It
 		{
